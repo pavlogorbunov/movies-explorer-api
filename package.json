@@ -25,6 +25,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "npx eslint --fix .",
+    "deploy": "scp -r ./app.js pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend && scp -r ./controllers pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend/controllers",
     "deploy+": "scp -r ./* pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend"
   }
 }

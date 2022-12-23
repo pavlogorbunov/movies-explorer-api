@@ -12,7 +12,9 @@ const NotFoundError = require('../errors/not-found-error');
 const BadRequestError = require('../errors/bad-request-error');
 const ConflictError = require('../errors/conflict-error');
 
-const cookieSettings = ((process.env.NODE_ENV === 'production') ? { httpOnly: true, sameSite: 'None', secure: true } : { httpOnly: true, sameSite: false, secure: false });
+const cookieSettings = ((process.env.NODE_ENV === 'production') ? { httpOnly: true, sameSite: false, secure: false } : { httpOnly: true, sameSite: false, secure: false });
+
+// console.log(cookieSettings);
 
 module.exports.getUser = (req, res, next) => {
   User.findById(req.params.id)
@@ -104,7 +106,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.status(OK_CODE).cookie('token', token, {
         maxAge: 3600000 * 24 * 7,
-        ...cookieSettings,
+        ...cookieSettings
       }).send({ message: 'Authorized' });
     })
     .catch(next);
@@ -112,6 +114,6 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res) => {
   res.clearCookie('token', {
-    ...cookieSettings,
+    ...cookieSettings
   }).send({ message: 'Loggedout' });
 };
