@@ -1,4 +1,4 @@
-const OK_CODE = 200;
+const { OK_CODE } = require('../constants/constants');
 const Movie = require('../models/movie');
 const NotFoundError = require('../errors/not-found-error');
 const BadRequestError = require('../errors/bad-request-error');

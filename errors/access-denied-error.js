@@ -1,7 +1,9 @@
+const { ACCES_DENIED_CODE } = require('../constants/constants');
+
 class AccessDeniedError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = 403;
+    this.statusCode = ACCES_DENIED_CODE;
   }
 }
 

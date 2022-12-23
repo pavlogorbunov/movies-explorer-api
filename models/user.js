@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const AuthorizationError = require('../errors/auth-error');
+const { EMAIL_REG_EXP } = require('../constants/validators');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -11,7 +12,9 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
+    validate: EMAIL_REG_EXP,
   },
   password: {
     type: String,

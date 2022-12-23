@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { LINK_REG_EXP } = require('../constants/validators');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -24,17 +25,17 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    validate: /https?:\/\/[a-z0-9-.]{2,}.[a-z]{2,}\/?[a-z0-9-._~:/?#[\]@!$&'()*+,;=]*#?/i,
+    validate: LINK_REG_EXP,
   },
   trailerLink: {
     type: String,
     required: true,
-    validate: /https?:\/\/[a-z0-9-.]{2,}.[a-z]{2,}\/?[a-z0-9-._~:/?#[\]@!$&'()*+,;=]*#?/i,
+    validate: LINK_REG_EXP,
   },
   thumbnail: {
     type: String,
     required: true,
-    validate: /https?:\/\/[a-z0-9-.]{2,}.[a-z]{2,}\/?[a-z0-9-._~:/?#[\]@!$&'()*+,;=]*#?/i,
+    validate: LINK_REG_EXP,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -42,7 +43,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {

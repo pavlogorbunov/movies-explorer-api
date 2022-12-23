@@ -4,8 +4,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const OK_CODE = 200;
-const MONGO_DB_CONFLICT_CODE = 11000;
+const { OK_CODE, MONGO_DB_CONFLICT_CODE } = require('../constants/constants');
+
 const { JWT_SECRET = 'dev-key' } = process.env;
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-error');
