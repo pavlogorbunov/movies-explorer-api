@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { PORT = 4000 } = process.env;
-const { DB_NAME = 'movies' } = process.env;
+const { DB_NAME = 'bitfilmsdb' } = process.env;
 const { OPTIONS_SUCCESS_STATUS } = require('./constants/constants');
 const routes = require('./routes/index');
 const { handleError } = require('./errors/error-handlers');
@@ -45,10 +45,9 @@ app.use(helmet());
 app.use('/', routes);
 
 app.use(errorLogger);
-
 app.use(errors());
 app.use(handleError);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+  // console.log(`App listening on port ${PORT}`);
 });

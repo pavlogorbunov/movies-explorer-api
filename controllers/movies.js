@@ -36,7 +36,7 @@ module.exports.postMovie = (req, res, next) => {
     .then((movie) => res.status(OK_CODE).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные для создания записи о фильме.'));
+        next(new BadRequestError());
         return;
       }
       next(err);
@@ -54,17 +54,17 @@ module.exports.deleteMovie = (req, res, next) => {
       Movie.findById(req.params.movieId)
         .then((movieWithId) => {
           if (movieWithId) {
-            next(new AccessDeniedError('Нельзя удалять чужие записи о фильмах!'));
+            next(new AccessDeniedError());
             return;
           }
-          next(new NotFoundError('Запись о фильме с таким id не найдена.'));
+          next(new NotFoundError());
         })
         .catch(next);
       return null;
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Некорректный _id для поиска записи о фильме.'));
+        next(new BadRequestError());
         return;
       }
       next(err);

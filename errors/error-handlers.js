@@ -1,16 +1,12 @@
-const { SERVER_ERROR_CODE } = require('../constants/constants');
+const { SERVER_ERROR_CODE, SERVER_ERROR_MESSAGE } = require('../constants/constants');
 const NotFoundError = require('./not-found-error');
 
 const handleError = (err, req, res, next) => {
-  const { statusCode = SERVER_ERROR_CODE, message } = err;
+  const { statusCode = SERVER_ERROR_CODE, message = SERVER_ERROR_MESSAGE } = err;
 
   res
     .status(statusCode)
-    .send({
-      message: statusCode === SERVER_ERROR_CODE
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
+    .send(message);
 
   next();
 };

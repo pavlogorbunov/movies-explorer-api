@@ -24,12 +24,12 @@ module.exports.getUser = (req, res, next) => {
           .status(OK_CODE)
           .send(user);
       }
-      next(new NotFoundError('Пользователь с таким id не найден.'));
+      next(new NotFoundError());
       return null;
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Введен некорректный id для поиска пользователя.'));
+        next(new BadRequestError());
         return;
       }
       next(err);
@@ -44,12 +44,12 @@ module.exports.getMe = (req, res, next) => {
           .status(OK_CODE)
           .send(user);
       }
-      next(new NotFoundError('Пользователь с таким id не найден.'));
+      next(new NotFoundError());
       return null;
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Введен некорректный id для поиска пользователя.'));
+        next(new BadRequestError());
         return;
       }
       next(err);
@@ -66,11 +66,11 @@ module.exports.addUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === MONGO_DB_CONFLICT_CODE) {
-        next(new ConflictError('Пользователь с таким email уже существует.'));
+        next(new ConflictError());
         return;
       }
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании пользователя.'));
+        next(new BadRequestError());
         return;
       }
       next(err);
@@ -86,12 +86,12 @@ module.exports.patchUser = (req, res, next) => {
           .status(OK_CODE)
           .send(user);
       }
-      next(new NotFoundError('Пользователь с таким id не найден.'));
+      next(new NotFoundError());
       return null;
     })
     .catch((err) => {
       if ((err.name === 'ValidationError') || (err.name === 'CastError')) {
-        next(new BadRequestError('Переданы некорректные данные при обновлении пользователя.'));
+        next(new BadRequestError());
         return;
       }
       next(err);
@@ -106,7 +106,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.status(OK_CODE).cookie('token', token, {
         maxAge: 3600000 * 24 * 7,
-        ...cookieSettings
+        ...cookieSettings,
       }).send({ message: 'Authorized' });
     })
     .catch(next);
@@ -114,6 +114,6 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res) => {
   res.clearCookie('token', {
-    ...cookieSettings
+    ...cookieSettings,
   }).send({ message: 'Loggedout' });
 };
