@@ -6,7 +6,7 @@ const handleError = (err, req, res, next) => {
 
   res
     .status(statusCode)
-    .send(message);
+    .send({ message });
 
   next();
 };
