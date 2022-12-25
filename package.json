@@ -1,0 +1,31 @@
+{
+  "name": "movies-explorer-backend",
+  "author": "Pavel Gorbunov",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "celebrate": "^15.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.7.0",
+    "express-winston": "^4.2.0",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.1",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint --fix .",
+    "deploy": "scp -r ./app.js pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend && scp -r ./controllers pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend/controllers",
+    "deploy+": "scp -r ./* pavlogorbunov@62.84.112.25:/home/pavlogorbunov/movies-explorer/backend"
+  }
+}

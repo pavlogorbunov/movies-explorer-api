@@ -1,0 +1,33 @@
+const OK_CODE = 200;
+const OPTIONS_SUCCESS_STATUS = 204;
+const BAD_REQUEST_CODE = 400;
+const BAD_REQUEST_MESSAGE = 'Некорректный запрос.';
+const AUTH_ERROR_CODE = 401;
+const AUTH_ERROR_MESSAGE = 'Ошибка авторизации.';
+const ACCES_DENIED_CODE = 403;
+const ACCES_DENIED_MESSAGE = 'Нельзя удалять чужие записи о фильмах!';
+const NOT_FOUND_ERROR_CODE = 404;
+const NOT_FOUND_ERROR_MESSAGE = 'Запись не найдена.';
+const CONFLICT_ERROR_CODE = 409;
+const CONFLICT_ERROR_MESSAGE = 'Пользователь с таким email уже существует.';
+const SERVER_ERROR_CODE = 500;
+const SERVER_ERROR_MESSAGE = 'Непредвиденная ошибка сервера.';
+const MONGO_DB_CONFLICT_CODE = 11000;
+
+module.exports = {
+  OK_CODE,
+  OPTIONS_SUCCESS_STATUS,
+  BAD_REQUEST_CODE,
+  BAD_REQUEST_MESSAGE,
+  AUTH_ERROR_CODE,
+  AUTH_ERROR_MESSAGE,
+  ACCES_DENIED_CODE,
+  ACCES_DENIED_MESSAGE,
+  NOT_FOUND_ERROR_CODE,
+  NOT_FOUND_ERROR_MESSAGE,
+  CONFLICT_ERROR_CODE,
+  CONFLICT_ERROR_MESSAGE,
+  SERVER_ERROR_CODE,
+  SERVER_ERROR_MESSAGE,
+  MONGO_DB_CONFLICT_CODE,
+};
