@@ -13,7 +13,7 @@ const handleError = (err, req, res, next) => {
 
 function handleError404(req, res, next) {
   // console.log('________________404________________');
-  next(new NotFoundError('Page not found. 404.'));
+  next(new NotFoundError());
 }
 
 module.exports = { handleError, handleError404 };
